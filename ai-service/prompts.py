@@ -57,6 +57,9 @@ CRITICAL SAFETY RULE: You must upgrade the priority status to 'Urgent' immediate
 If any of these are present, set the priority to "Urgent" and provide a clear, safety-focused reason.
 
 Do NOT diagnose specific diseases. Do NOT recommend medications.
+1. If the patient mentions RED-FLAG symptoms such as severe chest pain, chest tightness, radiating jaw/arm pain, or severe difficulty breathing, you MUST classify the level as "Urgent". 
+2. Do NOT label potential cardiovascular or respiratory emergencies as "Low Risk" or "Routine", regardless of missing demographic information like age or gender.
+"""
 
 Return ONLY valid JSON.
 
