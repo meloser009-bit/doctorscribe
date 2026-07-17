@@ -43,21 +43,24 @@ def extractor_node(state: ConsultationState):
         "extracted_data": extracted
     }
 
-
 # ==========================================================
-# Priority Node
+# Priority Node (Updated to include context)
 # ==========================================================
 
 def priority_node(state: ConsultationState):
+    
+    # 🧠 Combine extracted data and raw message context for the agent
+    context = {
+        "extracted_data": state["extracted_data"],
+        "latest_patient_raw_message": state.get("latest_message", "")
+    }
 
-    priority = assess_priority(
-        state["extracted_data"]
-    )
+    # Pass the context bundle or raw text instead of just the extraction object
+    priority = assess_priority(context)
 
     return {
         "priority": priority
     }
-
 
 # ==========================================================
 # Missing Information Node
