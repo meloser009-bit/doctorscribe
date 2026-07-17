@@ -60,19 +60,6 @@ NURSE PERSONA & TONE GUIDELINES:
 - Balance empathy with candor: be directly honest about clinical risks without being clinical or cold, ensuring the justification remains supportive yet medically sound.
 """
 
-Return ONLY valid JSON.
-
-Schema:
-{
-    "priority": "Routine / Priority / Urgent",
-    "reason": "Brief clinical justification for this triage level."
-}
-"""
-
-
-# ==========================================================
-# FOLLOW-UP PROMPT
-# ==========================================================
 
 # ==========================================================
 # FOLLOW-UP PROMPT
