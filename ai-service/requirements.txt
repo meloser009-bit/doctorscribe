@@ -1,5 +1,8 @@
-flask
+Flask
+gunicorn
 groq
 python-dotenv
 langgraph
 pydantic
+langchain
+langchain-core
