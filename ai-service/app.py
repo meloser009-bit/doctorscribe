@@ -115,6 +115,61 @@ def chat():
 
 
 # ==========================================
+# Finalize / SOAP Note Endpoint
+# ==========================================
+
+@app.route("/finalize", methods=["POST"])
+def finalize():
+    data = request.get_json()
+
+    # -----------------------------
+    # Validate Request
+    # -----------------------------
+    if not data:
+        return jsonify({
+            "error": "Request body is missing."
+        }), 400
+
+    if "session_id" not in data:
+        return jsonify({
+            "error": "session_id is required."
+        }), 400
+
+    session_id = data["session_id"]
+
+    # Check if the active session exists
+    if session_id not in sessions:
+        return jsonify({
+            "error": "Active session not found. Start a chat session first."
+        }), 404
+
+    state = sessions[session_id]
+
+    try:
+        # Run final state compilation through your graph workflow matrix
+        result = graph.invoke(state)
+        
+        # Save finalized state
+        sessions[session_id] = result
+
+        # Return targeted elements required for the SOAP targets mapping
+        return jsonify({
+            "summary": result.get("summary", ""),
+            "soap_note": result.get("soap_note", {
+                "S": "",
+                "O": "",
+                "A": "",
+                "P": ""
+            })
+        })
+
+    except Exception as e:
+        return jsonify({
+            "error": str(e)
+        }), 500
+
+
+# ==========================================
 # Health Check Endpoint
 # ==========================================
 
